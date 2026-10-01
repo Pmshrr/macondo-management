@@ -5,7 +5,7 @@ menu = [
     {"drink": "espresso", "price": 140000},
     {"drink": "americano", "price": 150000}
 ]
-def load_orders():
+def load_orders() -> list:
     if os.path.exists("orders.json"):
         try:
             with open("orders.json", "r") as file:
@@ -16,14 +16,14 @@ def load_orders():
         with open("orders.json", "w") as file:
             json.dump([], file)
         return []
-def save_orders(orders):
+def save_orders(orders: list) -> None:
     with open("orders.json", "w") as file:
         json.dump(orders, file)
-def add_order(order):
+def add_order(order: dict) -> None:
     orders = load_orders()
     orders.append(order)
     save_orders(orders)
-def find_drink(drink):
+def find_drink(drink: str) -> list | None:
     for item in menu:
         if item["drink"] == drink:
             return item
