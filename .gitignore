@@ -1,0 +1,11 @@
+@"
+orders.json
+__pycache__/
+*.py[cod]
+.idea/
+venv/
+.venv/
+*.log
+.DS_Store
+Thumbs.db
+"@ | Out-File -FilePath .gitignore -Encoding utf8
