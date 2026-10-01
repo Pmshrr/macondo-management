@@ -2,7 +2,7 @@ import sales
 def get_command():
     while True:
         print("1. Add order")
-        print("2. Show order")
+        print("2. Show orders")
         print("0. Exit")
         try:
             command = int(input("Choose: "))
