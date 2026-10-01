@@ -1,5 +1,5 @@
 import sales
-def get_command():
+def get_command() -> int:
     while True:
         print("1. Add order")
         print("2. Show orders")
@@ -12,21 +12,21 @@ def get_command():
         except ValueError:
             print("Please enter a valid number")
 
-def select_drink():
+def select_drink() -> dict:
     while True:
         item = input("Enter drink name: ").lower()
         result = sales.find_drink(item)
         if result is not None:
             return result
         print("Invalid drink name")
-def show_orders():
+def show_orders() -> None:
     orders = sales.load_orders()
     if not orders:
         print("No orders yet")
         return
     for order in orders:
         print(f"{order['drink']} : {order['price']}")
-def main():
+def main() -> None:
     while True:
         command = get_command()
         if command == 1:

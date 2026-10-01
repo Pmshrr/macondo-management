@@ -23,7 +23,7 @@ def add_order(order: dict) -> None:
     orders = load_orders()
     orders.append(order)
     save_orders(orders)
-def find_drink(drink: str) -> list | None:
+def find_drink(drink: str) -> dict | None:
     for item in menu:
         if item["drink"] == drink:
             return item
