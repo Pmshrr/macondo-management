@@ -3,10 +3,11 @@ def get_command() -> int:
     while True:
         print("1. Add order")
         print("2. Show orders")
+        print("3. Remove orders")
         print("0. Exit")
         try:
             command = int(input("Choose: "))
-            if command in (0, 1, 2):
+            if command in (0, 1, 2, 3):
                 return command
             print("invalid command")
         except ValueError:
@@ -24,8 +25,8 @@ def show_orders() -> None:
     if not orders:
         print("No orders yet")
         return
-    for order in orders:
-        print(f"{order['drink']} : {order['price']}")
+    for i, order in enumerate(orders, start=1):
+        print(f"{i}. {order['drink']} : {order['price']}")
 def main() -> None:
     while True:
         command = get_command()
@@ -34,7 +35,26 @@ def main() -> None:
             sales.add_order(item)
         elif command == 2:
             show_orders()
+        elif command == 3:
+            remove_order_ui()
         elif command == 0:
             break
+def get_order_number() -> int:
+    while True:
+        try:
+            order_number = int(input("Enter order number: "))
+            if order_number > 0:
+                return order_number
+            print("Invalid order number")
+        except ValueError:
+            print("Please enter a valid number")
+def remove_order_ui() -> None:
+    show_orders()
+    number = get_order_number()
+    success = sales.remove_order(number)
+    if success:
+        print("Order removed")
+    else:
+        print("Order does not exist")
 if __name__ == "__main__":
     main()

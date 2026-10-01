@@ -28,3 +28,10 @@ def find_drink(drink: str) -> dict | None:
         if item["drink"] == drink:
             return item
     return None
+def remove_order(index: int) -> bool:
+    orders = load_orders()
+    if index < 1 or index > len(orders):
+        return False
+    orders.pop(index - 1)
+    save_orders(orders)
+    return True
