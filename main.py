@@ -4,10 +4,11 @@ def get_command() -> int:
         print("1. Add order")
         print("2. Show orders")
         print("3. Remove orders")
+        print("4. Checkout")
         print("0. Exit")
         try:
             command = int(input("Choose: "))
-            if command in (0, 1, 2, 3):
+            if command in (0, 1, 2, 3, 4):
                 return command
             print("invalid command")
         except ValueError:
@@ -37,6 +38,8 @@ def main() -> None:
             show_orders()
         elif command == 3:
             remove_order_ui()
+        elif command == 4:
+            clear_orders_ui()
         elif command == 0:
             break
 def get_order_number() -> int:
@@ -56,5 +59,14 @@ def remove_order_ui() -> None:
         print("Order removed")
     else:
         print("Order does not exist")
+def clear_orders_ui() -> None:
+    orders = sales.load_orders()
+    if not orders:
+        print("No orders to clear")
+        return
+    total = sum(order['price'] for order in orders)
+    print(f"Total: {total}")
+    sales.clear_orders()
+    print("Orders cleared")
 if __name__ == "__main__":
     main()

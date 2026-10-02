@@ -34,4 +34,6 @@ def remove_order(index: int) -> bool:
         return False
     orders.pop(index - 1)
     save_orders(orders)
-    return True
+    return
+def clear_orders() -> None:
+    save_orders([])
